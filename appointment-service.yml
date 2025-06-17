@@ -13,3 +13,25 @@ eureka:
         defaultZone: http://localhost:8761/eureka/
       register-with-eureka: true
       fetch-registry: true
+      
+resilience4j:
+  circuitbreaker:
+    instances:
+      patient-service:
+        slidingWindowSize: 10
+        minimumNumberOfCalls: 5
+        failureRateThreshold: 50
+        waitDurationInOpenState: 30s
+      doctor-service:
+        slidingWindowSize: 10
+        minimumNumberOfCalls: 5
+        failureRateThreshold: 50
+        waitDurationInOpenState: 30s
+  retry:
+    instances:
+      patient-service:
+        maxAttempts: 3
+        waitDuration: 1s
+      doctor-service:
+        maxAttempts: 3
+        waitDuration: 1s
