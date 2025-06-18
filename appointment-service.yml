@@ -6,6 +6,13 @@ spring:
     port: 5672
     username: guest
     password: guest
+    connection-timeout: 5000ms
+    template:
+      retry:
+        enabled: true
+        initial-interval: 1000ms
+        max-attempts: 3
+        max-interval: 10000ms
 
 feign:
   circuitbreaker:
