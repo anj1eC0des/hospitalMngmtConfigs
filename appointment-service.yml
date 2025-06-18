@@ -7,12 +7,15 @@ spring:
     username: guest
     password: guest
     connection-timeout: 5000ms
+    requested-heartbeat: 5s
+    publisher-confirm-type: simple
     template:
       retry:
-        enabled: true
-        initial-interval: 1000ms
-        max-attempts: 3
-        max-interval: 10000ms
+        enabled: false
+    listener:
+      simple:
+        retry:
+          enabled: false
 
 feign:
   circuitbreaker:
